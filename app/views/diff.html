@@ -1,0 +1,126 @@
+<div class="diff-control-panel well">
+  <div class="row">
+    <div class="col-md-5">
+      <ui-select ng-model="diffCtrl.state1" on-select="diffCtrl.stateSelected($item, $model)">
+        <ui-select-match placeholder="State">
+            <span ng-bind="$select.selected"></span>
+        </ui-select-match>
+        <ui-select-choices repeat="state in (diffCtrl.states | filter: $select.search) track by state">
+            <span ng-bind="state"></span>
+        </ui-select-choices>
+      </ui-select>
+    </div>
+    <div class="col-md-2 separator">
+      <span class="glyphicon glyphicon-transfer"></span>
+    </div>
+    <div class="col-md-5">
+      <ui-select ng-model="diffCtrl.state2" on-select="diffCtrl.stateSelected($item, $model)">
+        <ui-select-match placeholder="State">
+            <span ng-bind="$select.selected"></span>
+        </ui-select-match>
+        <ui-select-choices repeat="state in (diffCtrl.states | filter: $select.search) track by state">
+            <span ng-bind="state"></span>
+        </ui-select-choices>
+      </ui-select>
+    </div>
+  </div>
+  <div class="row" ng-show="diffCtrl.areBothStatesSelected()">
+    <br>
+    <div class="col-md-5">
+      <form name="categoryForm">
+        <select id="selectCategory" ng-model="diffCtrl.selectedCategory" class="form-control"
+          ng-change="diffCtrl.categorySelected()"
+          ng-options="category for category in diffCtrl.categories">
+          <option value="" disabled>Category</option>
+        </select>
+      </form>
+    </div>
+  </div>
+  <div class="row" ng-show="diffCtrl.selectedCategory">
+    <br>
+    <div class="col-md-6">
+      <div class="col-md-3">
+        <form name="diffTypeSwitchForm">
+          <switch id="diffTypeSwitch" name="diffTypeSwitch" ng-model="diffCtrl.isWordDiff" class="green small" ng-change="diffCtrl.diffTypeToggled()"></switch>
+        </form>
+      </div>
+      <div class="col-md-6 switch-label">
+        <span>Diff words</span>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="col-md-3">
+        <form name="hideCommonSwitchForm">
+          <switch id="hideCommonSwitch" name="hideCommonSwitch" ng-model="diffCtrl.hideCommon" class="green small"></switch>
+        </form>
+      </div>
+      <div class="col-md-6 switch-label">
+        <span>Hide common</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div ng-show="diffCtrl.areBothStatesSelected()">
+<button type="button" class="btn btn-warning" ng-click="diffCtrl.reset()">Reset</button>
+</div>
+
+<br />
+<br />
+
+<div class="row" ng-show="diffCtrl.selectedCategory && !diffCtrl.isWordDiff">
+  <table class="table table-hover">
+    <tr>
+      <th>Law</th>
+      <th>{{diffCtrl.state1}}</th>
+      <th>{{diffCtrl.state2}}</th>
+      <th ng-show="!diffCtrl.hideCommon">Common</th>
+
+    </tr>
+    <tr ng-repeat="lawDiffResult in diffCtrl.allLawsDiffOutput">
+      <td>{{lawDiffResult.name}}</td>
+      <td>
+        <ul ng-repeat="result in lawDiffResult.removed">
+          <li>
+            <span class="diff-removed">{{result}}</span>
+          </li>
+        </ul>
+      </td>
+      <td>
+        <ul ng-repeat="result in lawDiffResult.added">
+          <li>
+            <span class="diff-added">{{result}}</span>
+          </li>
+        </ul>
+      </td>
+      <td ng-show="!diffCtrl.hideCommon">
+        <ul ng-repeat="result in lawDiffResult.unchanged">
+          <li>
+            <span class="diff-unchanged">{{result}}</span>
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<div class="row" ng-show="diffCtrl.selectedCategory && diffCtrl.isWordDiff">
+  <table class="table table-hover">
+    <tr>
+      <th>Law</th>
+      <th>Diff (<span class="diff-removed">{{diffCtrl.state1}}</span>, <span class="diff-added">{{diffCtrl.state2}}</span>)</th>
+    </tr>
+    <tr ng-repeat="lawDiffResult in diffCtrl.allLawsDiffOutput">
+      <td>{{lawDiffResult.name}}</td>
+      <td>
+        <ul ng-repeat="diffOutput in lawDiffResult.tokens">
+          <li ng-show="diffCtrl.hideCommon ? !(diffOutput.length === 1 && !diffOutput[0].added && !diffOutput[0].removed) : diffOutput.length > 0">
+            <span ng-repeat="token in diffOutput">
+              <span ng-class="{'diff-removed': token.removed, 'diff-added': token.added, 'diff-unchanged': !token.added && !token.removed}">{{token.value}}</span>
+            </span>
+        </ul>
+      </td>
+    </tr>
+  </table>
+</div>
+
