@@ -54,7 +54,7 @@
     "grunt-usemin": "^3.0.0",
     "grunt-angular-templates": "^0.5.7",
     "grunt-google-cdn": "^0.4.3",
-    "time-grunt": "^1.0.0"
+    "time-grunt": "^1.0.0",
     "gzippo": "^0.2.0",
     "morgan": "^1.6.1"
   }
