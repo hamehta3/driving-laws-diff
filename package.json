@@ -51,6 +51,9 @@
     "jit-grunt": "^0.9.1",
     "autoprefixer-core": "^5.2.1",
     "jshint-stylish": "^1.0.0",
+    "grunt-usemin": "^3.0.0",
+    "grunt-angular-templates": "^0.5.7",
+    "grunt-google-cdn": "^0.4.3",
     "gzippo": "^0.2.0",
     "morgan": "^1.6.1"
   }
