@@ -41,15 +41,14 @@
     "node": ">=0.10.0"
   },
   "scripts": {
-    "test": "grunt test"
+    "postinstall": "grunt build",
+    "start": "node web.js"
   },
   "dependencies": {
     "express": "^4.13.3",
+    "grunt": "0.4.5",
+    "grunt-cli": "0.1.13",
     "gzippo": "^0.2.0",
     "morgan": "^1.6.1"
-  },
-  "scripts": {
-    "postinstall": "grunt build",
-    "start": "node web.js"
   }
 }
