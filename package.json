@@ -41,7 +41,7 @@
     "node": ">=0.10.0"
   },
   "scripts": {
-    "postinstall": "grunt build",
+    "postinstall": "bower install && grunt build",
     "start": "node web.js"
   },
   "dependencies": {
