@@ -514,7 +514,7 @@ module.exports = function (grunt) {
     'build'
   ]);
 
-  grunt.registerTask('heroku:production', 'clean less uglify');
+  grunt.registerTask('heroku:production', ['clean', 'less', 'uglify']);
   /*grunt.registerTask('heroku:production', [
     'clean:dist',
     'wiredep',
