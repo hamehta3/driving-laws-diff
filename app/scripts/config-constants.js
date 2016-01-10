@@ -2,6 +2,6 @@
 
  angular.module('config-constants', [])
 
-.constant('ENV', {name:'development',API_PROTOCOL:'http',API_HOST:'localhost',API_PORT:5000})
+.constant('ENV', {name:'production',API_PROTOCOL:'https',API_HOST:'aaa-drivinglaws-api.herokuapp.com',API_PORT:443})
 
 ;

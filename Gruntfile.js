@@ -277,7 +277,9 @@ module.exports = function (grunt) {
       },
       production: {
         options: {
-          dest: '<%= yeoman.dist %>/scripts/config-constants.js'
+          // put the generated constants file in the app itself;
+          // it will be copied over to dist later
+          dest: '<%= yeoman.app %>/scripts/config-constants.js'
         },
         constants: {
           ENV: {
