@@ -1,11 +1,12 @@
 # driving-laws-diff
 
-This project is generated with [yo angular generator](https://github.com/yeoman/generator-angular)
-version 0.14.0.
+A tool to diff US state driving laws.
 
 ## Build & development
 
-Run `grunt` for building and `grunt serve` for preview.
+Install dependencies and build the project using `npm install`.
+Start the server using `npm start` or `node web.js`.
+Run `grunt serve` for preview.
 
 ## Testing
 
