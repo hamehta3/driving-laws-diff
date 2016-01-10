@@ -16,7 +16,8 @@ module.exports = function (grunt) {
   require('jit-grunt')(grunt, {
     useminPrepare: 'grunt-usemin',
     ngtemplates: 'grunt-angular-templates',
-    cdnify: 'grunt-google-cdn'
+    cdnify: 'grunt-google-cdn',
+    ngconstant: 'grunt-ng-constant',
   });
 
   // Configurable paths for the application
@@ -253,6 +254,42 @@ module.exports = function (grunt) {
         }
     },
 
+    ngconstant: {
+      // Options for all targets
+      options: {
+        space: '  ',
+        wrap: '"use strict";\n\n {%= __ngModule %}',
+        name: 'config-constants',
+      },
+      // Environment targets
+      development: {
+        options: {
+          dest: '<%= yeoman.app %>/scripts/config-constants.js'
+        },
+        constants: {
+          ENV: {
+            name: 'development',
+            API_PROTOCOL: 'http',
+            API_HOST: 'localhost',
+            API_PORT: 5000
+          }
+        }
+      },
+      production: {
+        options: {
+          dest: '<%= yeoman.dist %>/scripts/config-constants.js'
+        },
+        constants: {
+          ENV: {
+            name: 'production',
+            API_PROTOCOL: 'https',
+            API_HOST: 'aaa-drivinglaws-api.herokuapp.com',
+            API_PORT: 443
+          }
+        }
+      }
+    },
+
     // Renames files for browser caching purposes
     filerev: {
       dist: {
@@ -467,6 +504,7 @@ module.exports = function (grunt) {
 
     grunt.task.run([
       'clean:server',
+      'ngconstant:development',
       'wiredep',
       'concurrent:server',
       'postcss:server',
@@ -491,6 +529,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('build', [
     'clean:dist',
+    'ngconstant:production',
     'wiredep',
     'useminPrepare',
     'concurrent:dist',
@@ -513,24 +552,4 @@ module.exports = function (grunt) {
     'test',
     'build'
   ]);
-
-  grunt.registerTask('heroku:production', ['clean', 'less', 'uglify']);
-  /*grunt.registerTask('heroku:production', [
-    'clean:dist',
-    'wiredep',
-    'useminPrepare',
-    'concurrent:dist',
-    'postcss',
-    'ngtemplates',
-    'concat',
-    'ngAnnotate',
-    'copy:dist',
-    'cdnify',
-    'cssmin',
-    'uglify',
-    'filerev',
-    'usemin',
-    'htmlmin'
-  ]);
-  */
 };

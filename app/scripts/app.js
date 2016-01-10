@@ -17,6 +17,7 @@ angular
     'ngSanitize',
     'ngTouch',
     'app.config',
+    'config-constants',
     'ui.bootstrap',
     'ui.select',
     'uiSwitch'
