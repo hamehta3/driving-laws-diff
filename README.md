@@ -1,6 +1,7 @@
 # driving-laws-diff
 
-A tool to diff US state driving laws.
+A tool to diff US state driving laws ([link](http://driving-laws-diff.herokuapp.com/ "URL")).
+
 
 ## Build & development
 
