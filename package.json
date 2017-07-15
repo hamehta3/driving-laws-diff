@@ -38,7 +38,7 @@
     "time-grunt": "^1.0.0"
   },
   "engines": {
-    "node": ">=0.10.0"
+    "node": "6.11.1"
   },
   "scripts": {
     "postinstall": "bower install && grunt build",
