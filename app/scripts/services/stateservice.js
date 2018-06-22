@@ -47,7 +47,7 @@ angular.module('drivingLawsDiffApp')
     }
 
     function processResponse(response) {
-      $log.info("Successfully returned response");
+      //$log.info("Successfully returned response");
       //$log.log(response);
       return response.data[0];
     }
