@@ -1,5 +1,7 @@
 # driving-laws-diff
 
+[![Build Status](https://travis-ci.org/hamehta3/driving-laws-diff.svg?branch=master)](https://travis-ci.org/hamehta3/driving-laws-diff)
+
 A tool to diff US state driving laws ([link](http://driving-laws-diff.herokuapp.com/ "URL")).
 
 
